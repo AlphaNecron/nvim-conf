@@ -1,0 +1,29 @@
+{
+    "cpp": {
+      "prefix": "cpp",
+      "body": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "\tcin.tie(nullptr)->ios_base::sync_with_stdio(false);",
+        "\t$0",
+        "\treturn 0;",
+        "}"
+      ],
+      "description": "Default C++ template"
+    },
+    "fileio": {
+        "prefix": "fileio",
+        "body": [
+            "freopen(\"$0.INP\", \"r\", stdin);",
+            "freopen(\"$0.OUT\", \"w\", stdout);"
+        ]
+    },
+    "ull": {
+        "prefix": "ull",
+        "body": [
+            "using ull = unsigned long long;"
+        ]
+    }
+}

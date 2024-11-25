@@ -1,33 +1,51 @@
 ---@type ChadrcConfig
+---@class Config
 local M = {}
 
-M.ui = {
+M.base46 = {
   theme = "catppuccin",
-  cmp = {
-    style = "atom_colored",
-  },
-  nvdash = {
-    load_on_startup = true,
-    header = {
-      "  ▀▄   ▄▀      ▄▄▄████▄▄▄ ",
-      " ▄█▀███▀█▄    ███▀▀██▀▀███",
-      "█▀███████▀█   ▀▀███▀▀███▀▀",
-      "▀ ▀▄▄ ▄▄▀ ▀    ▀█▄ ▀▀ ▄█▀ ",
+  changed_themes = {
+    catppuccin = {
+      base_16 = {
+        base00 = "#181825",
+      },
     },
   },
+  integrations = { "dap" },
+}
+
+M.nvdash = {
+  load_on_startup = true,
+  header = {
+    "  ▀▄   ▄▀      ▄▄▄████▄▄▄ ",
+    " ▄█▀███▀█▄    ███▀▀██▀▀███",
+    "█▀███████▀█   ▀▀███▀▀███▀▀",
+    "▀ ▀▄▄ ▄▄▀ ▀    ▀█▄ ▀▀ ▄█▀ ",
+    "",
+  },
+}
+
+M.ui = {
+  cmp = {
+    style = "flat_dark",
+    icons_left = true,
+  },
   statusline = {
-    theme = "vscode_colored",
+    separator_style = "block",
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "cwd", "name" },
     modules = {
       name = function()
-        return "%#StText#👻 " .. "necronqwq"
+        return "%#StText# 👻 " .. "necronqwq "
       end,
     },
   },
   tabufline = {
     order = { "treeOffset", "buffers", "tabs" },
   },
-  transparency = true,
+}
+
+M.lsp = {
+  signature = true,
 }
 
 return M

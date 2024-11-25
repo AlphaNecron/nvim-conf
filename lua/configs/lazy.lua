@@ -1,5 +1,6 @@
 return {
   defaults = { lazy = true },
+  install = { missing = true, color_scheme = { "catppuccin" } },
   ui = {
     icons = {
       ft = "",

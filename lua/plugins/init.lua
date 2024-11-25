@@ -15,8 +15,19 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "LiadOz/nvim-dap-repl-highlights",
+        config = true,
+      },
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = true,
+      },
+    },
     opts = {
       ensure_installed = {
+        "python",
         "vim",
         "vimdoc",
         "cpp",
@@ -28,6 +39,8 @@ return {
     opts = {
       ensure_installed = {
         "clangd",
+        "gopls",
+        "basedpyright",
       },
     },
   },

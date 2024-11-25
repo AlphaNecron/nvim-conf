@@ -1,6 +1,9 @@
 ## NeoVim config
 My custom NeoVim config built on top of [NvChad](https://nvchad.com/), designed for competitive programming with C++, still WIP.
 
+> [!CAUTION]
+> Not ready for local use.
+
 ### Usage
 ```sh
 rm -rf ~/.local/share/nvim

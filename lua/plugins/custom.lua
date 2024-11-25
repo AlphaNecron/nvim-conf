@@ -2,30 +2,20 @@
 local plugins = {
   {
     "andweeb/presence.nvim",
-    lazy = false,
+    opts = {
+      main_image = "file",
+      neovim_image_text = "necronowo",
+    },
+  },
+  {
+    "p00f/clangd_extensions.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
   },
   {
     "wakatime/vim-wakatime",
     lazy = false,
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    opts = {
-      color_icons = true,
-    },
-  },
-  {
-    "CRAG666/code_runner.nvim",
-    config = function()
-      require("code_runner").setup {
-        filetype = {
-          cpp = "g++ -std=c++11 $dir/$fileName -o /tmp/$fileNameWithoutExt && /tmp/$fileNameWithoutExt < /tmp/input 2> /tmp/output",
-        },
-      }
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -33,6 +23,26 @@ local plugins = {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
+  },
+  {
+    "AlphaNecron/cptest.nvim",
+    opts = {
+      file_types = {
+        cpp = {
+          compile = function()
+            return "mkdir -p /tmp/build && g++ -Wall -std=c++11 -DONLINE_JUDGE -fmax-errors=5 "
+              .. vim.fn.expand "%:p"
+              .. " -o /tmp/build/"
+              .. vim.fn.expand "%:t:r"
+          end,
+          exec = function()
+            return "/tmp/build/" .. vim.fn.expand "%:t:r" .. " < /tmp/input 2> /tmp/output"
+          end,
+        },
+      },
+    },
+    dir = "/data/Dev/cptest.nvim",
+    dev = true,
   },
   {
     "folke/which-key.nvim",
@@ -48,6 +58,26 @@ local plugins = {
         update_root = true,
       },
     },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "configs.dap"
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = true,
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = true,
+    requires = { "mfussenegger/nvim-dap" },
+  },
+  {
+    "ojroques/nvim-bufdel",
+    lazy = false,
   },
 }
 

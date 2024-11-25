@@ -1,4 +1,5 @@
 require "nvchad.options"
+require "configs.neovide"
 
 local o = vim.o
 o.cursorlineopt = "both"

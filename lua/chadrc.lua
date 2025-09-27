@@ -4,6 +4,20 @@ local M = {}
 
 M.base46 = {
   theme = "catppuccin",
+  hl_add = {
+    DropBarMenuCurrentContext = {
+      bg = "black2",
+      fg = "white",
+      bold = true,
+    },
+    DropBarMenuHoverEntry = {
+      bg = "purple",
+      fg = "black",
+    },
+    DropBarIconUIIndicator = {
+      fg = "gray",
+    },
+  },
   changed_themes = {
     catppuccin = {
       base_16 = {

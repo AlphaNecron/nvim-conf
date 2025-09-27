@@ -1,11 +1,20 @@
 ---@type NvPluginSpec[]
-local plugins = {
+return {
   {
     "andweeb/presence.nvim",
+    event = "VimEnter",
     opts = {
       main_image = "file",
       neovim_image_text = "necronowo",
     },
+  },
+  {
+      "MysticalDevil/inlay-hints.nvim",
+      event = "LspAttach",
+      dependencies = { "neovim/nvim-lspconfig" },
+      config = function()
+          require("inlay-hints").setup()
+      end
   },
   {
     "p00f/clangd_extensions.nvim",
@@ -15,7 +24,7 @@ local plugins = {
   },
   {
     "wakatime/vim-wakatime",
-    lazy = false,
+    event = "BufReadPost",
   },
   {
     "neovim/nvim-lspconfig",
@@ -25,24 +34,57 @@ local plugins = {
     end,
   },
   {
-    "AlphaNecron/cptest.nvim",
-    opts = {
-      file_types = {
-        cpp = {
-          compile = function()
-            return "mkdir -p /tmp/build && g++ -Wall -std=c++11 -DONLINE_JUDGE -fmax-errors=5 "
-              .. vim.fn.expand "%:p"
-              .. " -o /tmp/build/"
-              .. vim.fn.expand "%:t:r"
-          end,
-          exec = function()
-            return "/tmp/build/" .. vim.fn.expand "%:t:r" .. " < /tmp/input 2> /tmp/output"
-          end,
-        },
-      },
+    "Shatur/neovim-session-manager",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
     },
-    dir = "/data/Dev/cptest.nvim",
-    dev = true,
+    opts = {
+      autosave_ignore_dirs = { "/tmp" },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        callback = function()
+          for _, buf in pairs(vim.api.nvim_list_bufs()) do
+            if vim.api.nvim_get_option_value("buftype", { buf = buf }) == "nofile" then
+              return
+            end
+          end
+          require("session_manager").save_current_session()
+        end,
+      })
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = true,
+    event = "User FilePost",
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      -- {
+      --   "natecraddock/workspaces.nvim",
+      --   lazy = false,
+      --   opts = {
+      --     auto_open = true,
+      --     auto_dir = true,
+      --     hooks = {
+      --       open = { "Telescope oldfiles" },
+      --     },
+      --   },
+      -- },
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
+    opts = {
+      pickers = {
+        find_files = {
+          no_ignore = true,
+        },
+        live_grep = {},
+      },
+      extensions = { "workspaces", "live_grep_args" },
+    },
   },
   {
     "folke/which-key.nvim",
@@ -53,6 +95,7 @@ local plugins = {
     opts = {
       filters = {
         dotfiles = true,
+        git_ignored = false,
       },
       update_focused_file = {
         update_root = true,
@@ -60,25 +103,13 @@ local plugins = {
     },
   },
   {
-    "mfussenegger/nvim-dap",
-    config = function()
-      require "configs.dap"
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    config = true,
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    config = true,
-    requires = { "mfussenegger/nvim-dap" },
-  },
-  {
     "ojroques/nvim-bufdel",
     lazy = false,
   },
+  -- {
+  --   "VonHeikemen/searchbox.nvim",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  -- },
 }
-
-return plugins

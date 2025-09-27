@@ -55,3 +55,6 @@ map("n", "<RightMouse>", function()
     mouse = true,
   })
 end, {})
+
+map("n", "<C-/>", "gbc", { desc = "toggle block comment", remap = true })
+map("v", "<C-/>", "gb", { desc = "toggle block comment", remap = true })

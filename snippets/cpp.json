@@ -20,22 +20,28 @@
             "freopen(\"${1:${TM_FILENAME_BASE}}.OUT\", \"w\", stdout);"
         ]
     },
-    "ull": {
+    "u64": {
         "prefix": "ull",
         "body": [
             "using ull = unsigned long long;"
         ]
     },
-    "pii": {
+    "i64": {
+        "prefix": "ll",
+        "body": [
+            "using ll = long long;"
+        ]
+    },
+    "(i32, i32)": {
         "prefix": "pii",
         "body": [
             "using pii = pair<int, int>;"
         ]
     },
-    "p2l": {
+    "(i64, i64)": {
         "prefix": "p2l",
         "body": [
-            "using p2l = pair<long long, long long>;"
+            "using p2l = pair<ll, ll>;"
         ]
     },
     "vec1d": {

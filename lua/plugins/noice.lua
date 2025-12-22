@@ -4,6 +4,9 @@ return {
     cmdline = {
       format = {
         cmdline = { title = "" },
+        filter = { title = "" },
+        lua = { title = "" },
+        help = { title = "" },
       },
     },
     views = {
@@ -11,21 +14,6 @@ return {
         border = {
           style = "single",
         },
-      },
-      popup = {
-        border = { style = "single" },
-      },
-      mini = {
-        border = { style = "single" },
-      },
-      confirm = {
-        border = { style = "single" },
-      },
-      hover = {
-        border = { style = "single" },
-      },
-      popupmenu = {
-        border = { style = "single" },
       },
     },
   },

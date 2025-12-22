@@ -1,8 +1,11 @@
+local lazy_pick = function(t)
+  return "<cmd> lua LazyVim.pick(" .. (t == nil and "" or ('"' .. t .. '"')) .. ")() <cr>"
+end
+
 return {
   {
     "goolord/alpha-nvim",
-    opts = function()
-      local dashboard = require("alpha.themes.dashboard")
+    opts = function(_, dashboard)
       local logo = [[
   ▀▄   ▄▀      ▄▄▄████▄▄▄
  ▄█▀███▀█▄    ███▀▀██▀▀███
@@ -11,10 +14,11 @@ return {
 ]]
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
-        dashboard.button("f", " " .. " Find file", "<cmd> lua LazyVim.pick()() <cr>"),
+        dashboard.button("p", " " .. " Projects", lazy_pick("projects")),
+        dashboard.button("f", " " .. " Find file", lazy_pick(nil)),
         dashboard.button("n", " " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
-        dashboard.button("r", " " .. " Recent files", [[<cmd> lua LazyVim.pick("oldfiles")() <cr>]]),
-        dashboard.button("g", " " .. " Find text", [[<cmd> lua LazyVim.pick("live_grep")() <cr>]]),
+        dashboard.button("r", " " .. " Recent files", lazy_pick("oldfiles")),
+        dashboard.button("g", " " .. " Find text", lazy_pick("live_grep")),
         -- dashboard.button("c", " " .. " Config",          "<cmd> lua LazyVim.pick.config_files()() <cr>"),
         dashboard.button("s", " " .. " Restore", [[<cmd> lua require("persistence").load() <cr>]]),
         -- dashboard.button("x", " " .. " Lazy Extras",     "<cmd> LazyExtras <cr>"),
@@ -26,10 +30,6 @@ return {
         button.opts.hl = "AlphaButtons"
         button.opts.hl_shortcut = "AlphaShortcut"
       end
-      dashboard.section.header.opts.hl = "AlphaHeader"
-      dashboard.section.buttons.opts.hl = "AlphaButtons"
-      dashboard.section.footer.opts.hl = "AlphaFooter"
-      dashboard.opts.layout[1].val = 8
       return dashboard
     end,
   },

@@ -1,6 +1,9 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    input = {
+      border = "single",
+    },
     notifier = {
       style = function(buf, notif, ctx)
         ctx.opts.border = "right"

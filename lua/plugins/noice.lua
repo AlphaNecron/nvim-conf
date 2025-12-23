@@ -10,6 +10,11 @@ return {
       },
     },
     views = {
+      cmdline_input = {
+        border = {
+          style = "single",
+        },
+      },
       cmdline_popup = {
         border = {
           style = "single",

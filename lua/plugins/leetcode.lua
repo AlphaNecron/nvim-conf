@@ -3,6 +3,7 @@ return {
   build = ":TSUpdate html",
   cmd = "Leet",
   dependencies = {
+    "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },

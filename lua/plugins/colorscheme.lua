@@ -6,6 +6,11 @@ return {
       float = {
         solid = true,
       },
+      custom_highlights = function(colors)
+        return {
+          UwU = { fg = colors.mauve, bg = colors.base, style = { "bold" } },
+        }
+      end,
       highlight_overrides = {
         all = function(colors)
           return {

@@ -20,6 +20,9 @@ require("lazy").setup({
     { import = "plugins" },
   },
   ui = { backdrop = 100 },
+  dev = {
+    path = "/data/Dev",
+  },
   defaults = {
     lazy = false,
     version = false,
@@ -34,7 +37,7 @@ require("lazy").setup({
         "gzip",
         -- "matchit",
         -- "matchparen",
-        -- "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

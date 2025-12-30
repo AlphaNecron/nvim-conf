@@ -1,8 +1,11 @@
+local horizontal_border = { " ", "─", " ", " ", " ", "─", " ", " " }
+
 return {
   "folke/snacks.nvim",
   opts = {
     input = {
-      border = "single",
+      border = horizontal_border,
+      title_pos = "left",
     },
     notifier = {
       style = function(buf, notif, ctx)

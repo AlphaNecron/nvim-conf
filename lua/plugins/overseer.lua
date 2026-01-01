@@ -1,5 +1,15 @@
 return {
   "stevearc/overseer.nvim",
+  opts = {
+    component_aliases = {
+      default = {
+        { "open_output", direction = "dock", on_start = "always" },
+        "on_exit_set_status",
+        "on_complete_notify",
+        "on_complete_dispose",
+      },
+    },
+  },
   init = function()
     vim.schedule(function()
       Snacks.toggle({

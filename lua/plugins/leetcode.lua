@@ -29,6 +29,11 @@ return {
       ["question_enter"] = {
         function(q)
           local bufnr = q.bufnr
+          local winid = q.winid
+          vim.wo[winid].foldmethod = "marker"
+          vim.wo[winid].foldmarker = "@leet imports start,@leet imports end"
+          vim.wo[winid].foldlevel = 0
+          vim.wo[winid].foldenable = true
           local km = vim.keymap
 
           km.set("n", "<leader>ll", "<cmd>Leet list<cr>", { buffer = bufnr, desc = "LeetCode list" })

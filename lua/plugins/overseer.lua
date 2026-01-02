@@ -33,6 +33,16 @@ return {
       { "<leader>oo", "<cmd>OverseerRun<cr>", desc = "Run task" },
       { "<leader>oa", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
       { "<leader>os", "<cmd>OverseerShell<cr>", desc = "Shell command" },
+      {
+        "<leader>oc",
+        function()
+          local tasks = require("overseer.task_list").list_tasks({ status = "FAILURE" })
+          for _, t in ipairs(tasks) do
+            t:dispose()
+          end
+        end,
+        desc = "Clear failed tasks",
+      },
     }
   end,
 }

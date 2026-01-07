@@ -13,9 +13,9 @@ return {
     highlight = { keyword = "fg" },
     keywords = {
       TODO = alt("todo"),
-      FIX = alt("fix", "fixme"),
+      FIX = alt("fix", "fixme", "error", "fatal"),
       HACK = alt("hack"),
-      WARN = alt("warn", "warning", "error", "fatal"),
+      WARN = alt("warn", "warning"),
       NOTE = alt("note", "info"),
       TEST = alt("trace", "debug"),
       PERF = alt("mark"),

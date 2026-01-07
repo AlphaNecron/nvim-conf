@@ -6,8 +6,14 @@ return {
     },
     diagnostics = {
       virtual_text = {
+        prefix = function(d, i, total)
+          local icons = { "", "", "", "" }
+          return icons[d.severity] .. (i < total and " " or "")
+        end,
         format = function(d)
-          return d.message:sub(1, (d.message:find("\n", 1, true) or 0) - 1)
+          local rs = d.source == "rust-analyzer" or d.source == "bacon-ls"
+          local msg = rs and d.message:gsub("^%w+: ", "") or d.message
+          return msg:sub(1, (msg:find("\n", 1, true) or 0) - 1)
         end,
       },
     },

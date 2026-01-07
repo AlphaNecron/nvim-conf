@@ -1,3 +1,5 @@
+local ft = { "cpp", "python" }
+
 return {
   {
     "xeluxee/competitest.nvim",
@@ -26,28 +28,16 @@ return {
       },
       floating_border_highlight = "NoiceCmdlinePopupBorder",
     },
-    init = function(p)
-      local keys = {}
-      for k, v in pairs(vim.tbl_deep_extend("force", p.opts.compile_command, p.opts.run_command)) do
-        keys[#keys + 1] = k
-      end
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = keys,
-        callback = function(ev)
-          local km = vim.keymap
-
-          km.set("n", "<leader>tc", "<cmd>CompetiTest run<cr>", { buffer = ev.buf, desc = "Run" })
-          km.set("n", "<leader>ta", "<cmd>CompetiTest add_testcase<cr>", { buffer = ev.buf, desc = "Add testcase" })
-          km.set("n", "<leader>te", "<cmd>CompetiTest edit_testcase<cr>", { buffer = ev.buf, desc = "Edit testcase" })
-          km.set(
-            "n",
-            "<leader>td",
-            "<cmd>CompetiTest delete_testcase<cr>",
-            { buffer = ev.buf, desc = "Delete testcase" }
-          )
-        end,
-      })
-    end,
+    keys = {
+      { "<leader>tc", "<cmd>CompetiTest run<cr>", { ft = ft, desc = "Run" } },
+      { "<leader>ta", "<cmd>CompetiTest add_testcase<cr>", { ft = ft, desc = "Add testcase" } },
+      { "<leader>te", "<cmd>CompetiTest edit_testcase<cr>", { ft = ft, desc = "Edit testcase" } },
+      {
+        "<leader>td",
+        "<cmd>CompetiTest delete_testcase<cr>",
+        { ft = ft, desc = "Delete testcase" },
+      },
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",

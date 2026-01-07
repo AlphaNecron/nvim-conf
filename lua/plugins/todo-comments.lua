@@ -1,17 +1,24 @@
+local function alt(...)
+  local t = {}
+  for _, v in ipairs({ ... }) do
+    table.insert(t, "[" .. v .. "]")
+    table.insert(t, "[" .. v:upper() .. "]")
+  end
+  return { alt = t }
+end
+
 return {
   "folke/todo-comments.nvim",
   opts = {
-    highlight = {
-      keyword = "fg",
-    },
+    highlight = { keyword = "fg" },
     keywords = {
-      TODO = { alt = { "[todo]" } },
-      FIX = { alt = { "[fix]", "[fixme]" } },
-      HACK = { alt = { "[hack]" } },
-      WARN = { alt = { "[warn]", "[warning]", "[error]", "[fatal]" } },
-      NOTE = { alt = { "[note]", "[info]" } },
-      TEST = { alt = { "[trace]", "[debug]" } },
-      PERF = { alt = { "[mark]" } },
+      TODO = alt("todo"),
+      FIX = alt("fix", "fixme"),
+      HACK = alt("hack"),
+      WARN = alt("warn", "warning", "error", "fatal"),
+      NOTE = alt("note", "info"),
+      TEST = alt("trace", "debug"),
+      PERF = alt("mark"),
     },
   },
   config = function(_, opts)

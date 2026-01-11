@@ -12,7 +12,7 @@ return {
         end,
         format = function(d)
           local rs = d.source == "rust-analyzer" or d.source == "bacon-ls"
-          local msg = rs and d.message:gsub("^%w+: ", "") or d.message
+          local msg = rs and d.message:gsub("^%w+%[(%w+)%]: ", "%1: ") or d.message
           return msg:sub(1, (msg:find("\n", 1, true) or 0) - 1)
         end,
       },

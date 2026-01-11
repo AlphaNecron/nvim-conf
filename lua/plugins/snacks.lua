@@ -1,10 +1,8 @@
-local horizontal_border = { " ", "─", " ", " ", " ", "─", " ", " " }
-
 return {
   "folke/snacks.nvim",
   opts = {
     input = {
-      border = horizontal_border,
+      border = "single",
       title_pos = "left",
     },
     notifier = {

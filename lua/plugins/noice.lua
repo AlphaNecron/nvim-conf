@@ -1,5 +1,3 @@
-local horizontal_border = { " ", "─", " ", " ", " ", "─", " ", " " }
-
 return {
   "folke/noice.nvim",
   opts = {
@@ -14,13 +12,13 @@ return {
     views = {
       cmdline_input = {
         border = {
-          style = horizontal_border,
+          style = "single",
           text = { top_align = "left" },
         },
       },
       cmdline_popup = {
         border = {
-          style = horizontal_border,
+          style = "single",
           text = { top_align = "left" },
         },
       },
